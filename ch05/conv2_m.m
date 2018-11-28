@@ -1,0 +1,12 @@
+close all;
+clear all;
+clc;
+l = imread('rice.png');
+l = im2double(l);
+J = imnoise(l, 'gaussian', 0, 0.01);
+h = ones(3, 3) / 9;
+k = conv2(J, h);
+figure;
+subplot(131);imshow(l);
+subplot(132);imshow(J);
+subplot(133);imshow(k);

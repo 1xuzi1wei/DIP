@@ -1,0 +1,23 @@
+clear all;
+close all;
+clc;
+%% 对图像进行巴特沃斯低通滤波
+l = imread('cameraman.tif');
+l = im2double(l);
+J = fft2(l);
+J = fftshift(J);
+[x, y] = meshgrid(-128:127, -128:127);
+z = sqrt(x.^2 + y.^2);
+d1 = 10;
+d2 = 30;
+n = 6;
+h1 = 1 ./ (1 + (z/d1) .^ (2 * n));
+h2 = 1 ./ (1 + (z/d2) .^ (2 * n));
+k1 = J .* h1;
+k2 = J .* h2;
+L1 = ifft2(ifftshift(k1));
+L2 = ifft2(ifftshift(k2));
+figure;
+subplot(131);imshow(l);
+subplot(132);imshow(real(L1));
+subplot(133);imshow(real(L2));

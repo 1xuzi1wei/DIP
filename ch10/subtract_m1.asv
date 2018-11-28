@@ -1,0 +1,11 @@
+clear all;
+close all;
+clc;
+%% 利用图像减法运算实现混合图像分离
+a = imread('tire.tif');
+[m, n] = size(a);
+b = imread('eight.tif');
+c = b;
+a = im2double(a);
+b = im2double(b);
+c = im2double(c);
